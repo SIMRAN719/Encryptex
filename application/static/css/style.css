@@ -361,8 +361,9 @@ textarea#input-text, textarea#output-text {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.95rem;
     resize: none;
-    line-height: 1.4;
+    line-height: 1.4; 
 }
+
 
 textarea#input-text {
     color: var(--soft-white);
@@ -370,6 +371,7 @@ textarea#input-text {
 
 textarea#output-text {
     color: var(--soft-white);
+    background: var(--slate-dark);
 }
 
 textarea:focus {

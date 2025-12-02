@@ -44,16 +44,6 @@ async function transform(operation) {
         if (result.success) {
             outputText.value = result.result;
             
-            // Add success animation
-            outputText.style.transition = 'all 0.3s ease';
-            outputText.style.backgroundColor = '#e5cedc';
-            outputText.style.transform = 'scale(1.02)';
-            
-            setTimeout(() => {
-                outputText.style.backgroundColor = 'white';
-                outputText.style.transform = 'scale(1)';
-            }, 500);
-            
             console.log('✓ Transformation successful:', operation);
         } else {
             alert('❌ Error: ' + result.error);
