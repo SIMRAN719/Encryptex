@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cipher_info.name }} - Encryptex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>✨ ENCRYPTEX ✨</h1>
+            <p class="tagline">"{{ cipher_info.name }}"</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="cipher-layout">
+            <aside class="sidebar">
+                <h3>All Ciphers</h3>
+                <ul>
+                    {% for key, cipher in all_ciphers.items() %}
+                    <li>
+                        <a href="/cipher/{{ key }}" {% if key == cipher_type %}class="active"{% endif %}>
+                            {{ cipher.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </aside>
+
+            <main class="cipher-work">
+                <a href="/" class="back-button">← Home</a>
+                
+                <div class="cipher-header">
+                    <h2>{{ cipher_info.name }}</h2>
+                    <span class="difficulty">{{ cipher_info.difficulty }}</span>
+                    <p>{{ cipher_info.description }}</p>
+                    <div class="historical">
+                        📜 {{ cipher_info.historical }}
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn-encrypt" onclick="transform('encrypt')">🔒 Encrypt</button>
+                    <button class="btn-decrypt" onclick="transform('decrypt')">🔓 Decrypt</button>
+                    
+                    {% if cipher_type == 'vigenere' %}
+                    <input type="text" id="key-input" class="key-input" placeholder="Enter keyword" value="KEY">
+                    {% elif cipher_type == 'caesar' %}
+                    <input type="number" id="shift-input" class="shift-input" placeholder="Shift" value="3" min="1" max="25">
+                    {% endif %}
+                </div>
+
+                <div class="text-areas">
+                    <div class="text-group">
+                        <label for="input-text">Input Text</label>
+                        <textarea id="input-text" placeholder="Enter your message here..."></textarea>
+                    </div>
+                    <div class="text-group">
+                        <label for="output-text">Output Text</label>
+                        <textarea id="output-text" placeholder="Result will appear here..." readonly></textarea>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>Encryptex - Unlock the secrets of cryptography</p>
+    </footer>
+
+<script>
+    const cipherType = "{{ cipher_type }}";
+    console.log("cipherType =", cipherType);
+</script>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

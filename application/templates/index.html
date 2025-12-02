@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryptex - Journey Through the Art of Secret Writing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>✨ ENCRYPTEX ✨</h1>
+            <p class="tagline">"In the footsteps of Leonardo da Vinci, decode the mysteries"</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Welcome, Cryptographer</h2>
+            <p>
+                <!-- From ancient Roman battlefields to Leonardo da Vinci's secret notebooks, 
+                humanity has always sought ways to hide messages from prying eyes. 
+                Step into a world where every letter holds a secret, where simple shifts 
+                and clever transformations protected kingdoms and sparked revolutions.  -->
+                Choose your cipher and begin your journey into the art of cryptography.
+            </p>
+        </div>
+
+        <div class="cipher-grid">
+            {% for key, cipher in ciphers.items() %}
+            <div class="cipher-card" onclick="window.location.href='/cipher/{{ key }}'">
+                <h3>{{ cipher.name }}</h3>
+                <span class="difficulty">{{ cipher.difficulty }}</span>
+                <p>{{ cipher.description }}</p>
+                <div class="historical">
+                    📜 {{ cipher.historical }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            "The greatest secrets are always hidden in the most unlikely places" - Dan Brown
+        </p>
+    </footer>
+</body>
+</html>
